@@ -1,16 +1,16 @@
-import { css } from '../../style/stitches.config'
-
-const styledApp = css({
-    padding: 0,
-    margin: 0,
-    backgroundColor: 'darkgrey',
-    width: '100vw',
-    height: '100vh',
-})()
+import { styledApp } from './index.style'
+import ThemeContextProvider from '../../context/theme'
+import Switch from '@/components/switch'
+import Container from '@/components/container'
 
 function App() {
     return (
     <div class={styledApp}>
+        <ThemeContextProvider>
+            <Container>
+                <Switch />
+            </Container>
+        </ThemeContextProvider>
     </div>
   )
 }
