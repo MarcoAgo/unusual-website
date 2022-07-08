@@ -15,7 +15,7 @@ const AnimatedText: Component<IAnimatedTextProps> = (props): JSX.Element => {
 
   onMount(() => {
     gsap.from('#animated-text-container', {
-      y: 300,
+      y: 100,
       visibility: 'hidden',
       opacity: 0
     })
