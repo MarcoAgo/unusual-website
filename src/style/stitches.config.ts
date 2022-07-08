@@ -13,6 +13,14 @@ export const { css, createTheme, globalCss, keyframes } = createStitches({
         space: {
             fullHeight: '100vh',
             fullWidth: '100vw',
+
+            // Layout spacing
+            base: '16px',
+            medium: '24px',
+            large: '32px',
+            xlarge: '48px',
+            xxlarge: '64px',
+            xxxlarge: '128px',
         },
         fontSizes: {
             unreadable: '8px',
@@ -24,7 +32,10 @@ export const { css, createTheme, globalCss, keyframes } = createStitches({
         fonts: {
             main: 'Roboto Mono, monospace',
         },
-        fontWeights: {},
+        fontWeights: {
+            medium: '500',
+            bold: '700',
+        },
         lineHeights: {},
         letterSpacings: {},
         sizes: {},

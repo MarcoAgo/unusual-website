@@ -9,27 +9,34 @@ import { ThemeStorageKey, ThemeType } from '../../context/theme/theme.types'
 import MainContent from '@/components/main-content'
 
 function App() {
-    globalStyles()
-    const [isOpen, setIsOpen] = createSignal(false)
+  globalStyles()
+  const [isOpen, setIsOpen] = createSignal(false)
 
-    onMount(() => {
-        const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)')
-        if (darkThemeMq.matches && window.localStorage.getItem(ThemeStorageKey) === ThemeType.LIGHT) {
-            setIsOpen(true)
-        }
-    })
+  onMount(() => {
+    const isModalTriggeredInSession =
+      window.sessionStorage.getItem('modal-triggered') === 'true'
+    const isLightTheme =
+      window.localStorage.getItem(ThemeStorageKey) === ThemeType.LIGHT
+    const isSystemDarkThemed = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches
 
-    return (
+    if (isSystemDarkThemed && isLightTheme && !isModalTriggeredInSession) {
+      setIsOpen(true)
+    }
+  })
+
+  return (
     <div class={styledApp}>
-        <ThemeContextProvider>
-            {!isOpen() && (
-                <Container>
-                    <Header />
-                    <MainContent />
-                </Container>
-            )}
-            <ChangeThemeModal isOpen={isOpen} setIsOpen={setIsOpen} />
-        </ThemeContextProvider>
+      <ThemeContextProvider>
+        {!isOpen() && (
+          <Container>
+            <Header />
+            <MainContent />
+          </Container>
+        )}
+        <ChangeThemeModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      </ThemeContextProvider>
     </div>
   )
 }
