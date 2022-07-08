@@ -4,11 +4,15 @@ export const styledHeroOpener = css({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
     width: '100vw',
     height: 'calc(100vh - 96px)',
+})()
 
-    '& h1': {
-        marginBottom: 160,
-        color: '$contrast',
-    }
+export const styledHeroOpenerTextContainer = css({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    paddingBottom: '128px'
 })()

@@ -16,6 +16,7 @@ export const styledChangeThemeModal = css({
     position: 'fixed',
     top: 0,
     left: 0,
+    textAlign: 'center'
 })()
 
 export const styledChangeThemeModalContainer = css({
