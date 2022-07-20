@@ -25,13 +25,14 @@ export const styledBorderSocialContact = css({
     height: '100vh',
     position: 'fixed',
     top: 0,
-    left: 0,
+    left: 24,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
     paddingBottom: '$xlarge',
     opacity: 0,
+    zIndex: '$overlay',
 
     '& .social-wrap': {
         marginBottom: '$xlarge',

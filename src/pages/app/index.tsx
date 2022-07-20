@@ -1,5 +1,6 @@
 import { styledApp } from './index.style'
-import ThemeContextProvider from '../../context/theme'
+import ThemeContextProvider from '@/context/theme'
+import StoreContextProvider from '@/context/store'
 import Container from '@/components/container'
 import { globalStyles } from '@/style/stitches.config'
 import ChangeThemeModal from '@/components/modals/change-theme-modal'
@@ -16,7 +17,7 @@ function App() {
     const isModalTriggeredInSession =
       window.sessionStorage.getItem('modal-triggered') === 'true'
     const isLightTheme =
-      window.localStorage.getItem(ThemeStorageKey) === ThemeType.LIGHT
+      !window.localStorage.getItem(ThemeStorageKey) || window.localStorage.getItem(ThemeStorageKey) === ThemeType.LIGHT
     const isSystemDarkThemed = window.matchMedia(
       '(prefers-color-scheme: dark)'
     ).matches
@@ -28,15 +29,17 @@ function App() {
 
   return (
     <div class={styledApp}>
-      <ThemeContextProvider>
-        {!isOpen() && (
-          <Container>
-            <Header />
-            <MainContent />
-          </Container>
-        )}
-        <ChangeThemeModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      </ThemeContextProvider>
+      <StoreContextProvider>
+        <ThemeContextProvider>
+          {!isOpen() && (
+            <Container>
+              <Header />
+              <MainContent />
+            </Container>
+          )}
+          <ChangeThemeModal isOpen={isOpen} setIsOpen={setIsOpen} />
+        </ThemeContextProvider>
+      </StoreContextProvider>
     </div>
   )
 }

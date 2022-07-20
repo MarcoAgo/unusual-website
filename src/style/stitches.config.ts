@@ -31,6 +31,7 @@ export const { css, createTheme, globalCss, keyframes } = createStitches({
         },
         fonts: {
             main: 'Roboto Mono, monospace',
+            sansSerif: 'Montserrat, sans-serif',
         },
         fontWeights: {
             medium: '500',
