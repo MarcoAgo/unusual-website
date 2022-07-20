@@ -16,3 +16,20 @@ export const styledHeroOpenerTextContainer = css({
     flexDirection: 'column',
     paddingBottom: '128px'
 })()
+
+export const styledMoreButton = css({
+    border: 'none',
+    outline: 'none',
+    height: '72px',
+    width: '72px',
+    borderRadius: '50%',
+    backgroundColor: '$contrast',
+    marginTop: '72px',
+    textTransform: 'lowercase',
+    fontFamily: '$sansSerif',
+    opacity: 0,
+
+    '&:hover': {
+        cursor: 'pointer',
+    }
+})()

@@ -39,7 +39,7 @@ function Switch(): JSX.Element {
     const storedTheme = localStorage.getItem('theme')
     gsap.to('#switch-circle', {
       duration: 0.3,
-      x: storedTheme === ThemeType.LIGHT ? 0 : 32
+      x: !storedTheme || storedTheme === ThemeType.LIGHT ? 0 : 32
     })
     setThemeSignal(storedTheme)
   })
