@@ -6,7 +6,7 @@ export const styledHeroOpener = css({
     justifyContent: 'center',
     flexDirection: 'column',
     width: '100vw',
-    height: 'calc(100vh - 96px)',
+    height: '100vh',
 })()
 
 export const styledHeroOpenerTextContainer = css({

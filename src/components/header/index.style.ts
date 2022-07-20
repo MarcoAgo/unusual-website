@@ -5,7 +5,10 @@ export const styledHeader = css({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: 'calc(100% - 64px)',
-    padding: 32
+    padding: 32,
+    position: 'fixed',
+    top: 0,
+    zIndex: '$overlay'
 })()
 
 export const styledHeaderLogo = css({

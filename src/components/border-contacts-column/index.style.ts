@@ -32,6 +32,7 @@ export const styledBorderSocialContact = css({
     flexDirection: 'column',
     paddingBottom: '$xlarge',
     opacity: 0,
+    zIndex: '$overlay',
 
     '& .social-wrap': {
         marginBottom: '$xlarge',

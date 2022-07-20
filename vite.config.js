@@ -1,10 +1,11 @@
 import solidPlugin from 'vite-plugin-solid'
 import { defineConfig } from 'vite'
 import path from 'path'
+import dts from 'vite-plugin-dts'
 
 
 export default defineConfig({
-    plugins: [solidPlugin()],
+    plugins: [solidPlugin(), dts()],
     build: {
         target: 'esnext',
         polyfillDynamicImport: false,

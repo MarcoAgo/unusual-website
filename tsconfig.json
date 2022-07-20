@@ -19,6 +19,7 @@
     "baseUrl": "./src",
     "lib": ["ESNext", "DOM"],
     "types": ["vite/client"],
+    "declaration": true,
     "paths": {
       "@/style/*": ["style/*"],
       "@/components/*": ["components/*"],

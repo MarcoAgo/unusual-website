@@ -10,11 +10,9 @@ import useStoreSelector from '@/context/store/utils/hooks/useSelector'
 import { journeyDataSelector, journeyDispatchersSelector } from '@/context/store/store-slices/journey/selectors'
 
 const HeroOpener: Component = (): JSX.Element => {
+
   const { userJourneyDispatch } = useStoreSelector(journeyDispatchersSelector)
   const journeyState = useStoreSelector(journeyDataSelector)
-
-  console.log(journeyState)
-
 
   const handleMouseOver = (): void => {
     gsap.to('#discover-more-button', {
@@ -63,15 +61,17 @@ const HeroOpener: Component = (): JSX.Element => {
         <AnimatedText text="An unusual website" />
         <AnimatedText size="tiny" text="The question is, why is unusual?" />
         <div>
-          <button 
-            id="discover-more-button" 
-            onMouseOver={handleMouseOver} 
-            onMouseLeave={handleMouseLeave}
-            onClick={handleClick}
-            class={styledMoreButton}
-          >
-            {journeyState.isStarted ? 'Discover' : 'More'}
-          </button>
+          <a href='#scroll-target'>
+            <button 
+              id="discover-more-button" 
+              onMouseOver={handleMouseOver} 
+              onMouseLeave={handleMouseLeave}
+              onClick={handleClick}
+              class={styledMoreButton}
+            >
+              {journeyState.isStarted ? 'Discover' : 'More'}
+            </button>
+          </a>
         </div>
       </div>
     </div>
