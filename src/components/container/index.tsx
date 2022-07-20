@@ -3,8 +3,6 @@ import { useTheme } from '../../context/theme'
 import { darkThemeConfig } from '@/style/dark-theme.config'
 import { ThemeType } from '../../context/theme/theme.types'
 
-
-
 const Container: Component<{ children: JSX.Element }> = (props) => {
     const theme = useTheme()
 
