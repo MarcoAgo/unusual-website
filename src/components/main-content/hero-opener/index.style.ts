@@ -14,7 +14,6 @@ export const styledHeroOpenerTextContainer = css({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    paddingBottom: '128px'
 })()
 
 export const styledMoreButton = css({

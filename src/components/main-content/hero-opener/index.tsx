@@ -1,4 +1,4 @@
-import { Component, JSX, onMount } from 'solid-js'
+import { Component, createEffect, JSX, onMount } from 'solid-js'
 import {
   styledHeroOpener,
   styledHeroOpenerTextContainer,
@@ -9,8 +9,7 @@ import gsap from 'gsap'
 import useStoreSelector from '@/context/store/utils/hooks/useSelector'
 import { journeyDataSelector, journeyDispatchersSelector } from '@/context/store/store-slices/journey/selectors'
 
-const HeroOpener: Component = (): JSX.Element => {
-
+const HeroOpener: Component<{ hideButton: boolean }> = (props): JSX.Element => {
   const { userJourneyDispatch } = useStoreSelector(journeyDispatchersSelector)
   const journeyState = useStoreSelector(journeyDataSelector)
 
@@ -55,23 +54,31 @@ const HeroOpener: Component = (): JSX.Element => {
     })
   })
 
+  createEffect(() => {
+    if (props.hideButton) {
+      gsap.to('#discover-more-button', {
+        duration: 1,
+        ease: 'power4.in',
+        y: '100vh',
+      })
+    }
+  })
+
   return (
     <div class={styledHeroOpener}>
       <div class={styledHeroOpenerTextContainer}>
         <AnimatedText text="An unusual website" />
         <AnimatedText size="tiny" text="The question is, why is unusual?" />
         <div>
-          <a href='#scroll-target'>
-            <button 
-              id="discover-more-button" 
-              onMouseOver={handleMouseOver} 
-              onMouseLeave={handleMouseLeave}
-              onClick={handleClick}
-              class={styledMoreButton}
-            >
-              {journeyState.isStarted ? 'Discover' : 'More'}
-            </button>
-          </a>
+          <button 
+            id="discover-more-button" 
+            onMouseOver={handleMouseOver} 
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
+            class={styledMoreButton}
+          >
+            {journeyState.isStarted ? 'Discover' : 'More'}
+          </button>
         </div>
       </div>
     </div>
