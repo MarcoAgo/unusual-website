@@ -1,4 +1,4 @@
-import { Component, createEffect, JSX, onMount } from 'solid-js'
+import { Component, createEffect, JSX } from 'solid-js'
 import {
   styledHeroOpener,
   styledHeroOpenerTextContainer,

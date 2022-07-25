@@ -7,7 +7,6 @@ import useStoreSelector from '@/context/store/utils/hooks/useSelector'
 import { journeyDataSelector } from '@/context/store/store-slices/journey/selectors'
 import PresentationText from './presentation-text'
 import { scrollDataSelector, scrollDispatchersSelector } from '@/context/store/store-slices/scroll'
-import { userJourneyDispatch } from '@/context/store/store-slices/journey'
 
 const styledContainer = css({
   height: '100vh',
