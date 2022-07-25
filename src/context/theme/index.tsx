@@ -1,7 +1,7 @@
 import { createContext, createSignal, JSX, onMount, useContext } from 'solid-js'
 import { ThemeStorageKey, ThemeType } from './theme.types'
 
-const ThemeContext = createContext()
+const ThemeContext = createContext({})
 
 export interface IThemeContextProviderProps {
     children: JSX.Element
@@ -13,7 +13,7 @@ export interface IThemeHookValues {
 }
 
 function ThemeContextProvider(props: IThemeContextProviderProps) {
-    const [current, setCurrent] = createSignal({ current: ThemeType.LIGHT })
+    const [current, setCurrent] = createSignal({ current: window.localStorage.getItem(ThemeStorageKey) as ThemeType || ThemeType.LIGHT })
 
     const store = {
         current,

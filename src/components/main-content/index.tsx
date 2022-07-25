@@ -5,6 +5,9 @@ import Scrollbar from 'smooth-scrollbar'
 import { css } from '@/style/stitches.config'
 import useStoreSelector from '@/context/store/utils/hooks/useSelector'
 import { journeyDataSelector } from '@/context/store/store-slices/journey/selectors'
+import PresentationText from './presentation-text'
+import { scrollDataSelector, scrollDispatchersSelector } from '@/context/store/store-slices/scroll'
+import { userJourneyDispatch } from '@/context/store/store-slices/journey'
 
 const styledContainer = css({
   height: '100vh',
@@ -18,8 +21,8 @@ const MainContent: Component = (): JSX.Element => {
   const [initScrollbar, setInitScrollbar] = createSignal(false)
   const [hideButton, setHideButton] = createSignal(false)
   const journeyState = useStoreSelector(journeyDataSelector)
-
-  setTimeout(() => setInitScrollbar(true), 3000)
+  const scrollState = useStoreSelector(scrollDataSelector)
+  const { userScrollDispatch } = useStoreSelector(scrollDispatchersSelector)
 
   createEffect(() => {
     if (initScrollbar()) {
@@ -39,13 +42,24 @@ const MainContent: Component = (): JSX.Element => {
     }
   })
 
-  const wheelListener = () => {
-    if (!hideButton() && initScrollbar()) {
+  const wheelListener = (event: WheelEvent): void => {
+    if (scrollbar()?.offset.y as number <= 160) {
+      setHideButton(false)
+    }
+
+    if (!hideButton() && initScrollbar() && event.deltaY > 0) {
       setHideButton(true)
     }
+
+    userScrollDispatch({
+      ...scrollState(),
+      offset: scrollbar()?.offset.y,
+      contentHeight: scrollbar()?.getSize().content.height 
+    })
   }
 
   onMount(() => {
+    setTimeout(() => setInitScrollbar(true), 3000)
     window?.addEventListener('wheel', wheelListener)
   })
 
@@ -57,8 +71,9 @@ const MainContent: Component = (): JSX.Element => {
     <>
       <BorderContactsColumn />
       <div id="scroll-container" class={styledContainer}>
-          <HeroOpener hideButton={hideButton()} />
-          <div id="scroll-target" style={{ height: '100vh', width: '100vw', "background-color": '#474747' }}></div>
+          <HeroOpener hideButton={hideButton()} setHideButton={setHideButton} />
+          <PresentationText />
+          <div style={{ height: '100vh', width: '100vw', backgroundColor: '#474747' }}></div>
       </div>
     </>
   )
